@@ -1,47 +1,39 @@
-document.addEventListener("DOMContentLoaded", function() {
-  // Fetch the CSV file from the same directory
+document.addEventListener('DOMContentLoaded', () => {
   fetch('Car_parks.csv')
     .then(response => response.text())
-    .then(data => {
-      // Split the CSV data into rows
-      const rows = data.split('\n');
-      // Create the table element
+    .then(csvData => {
+      const rows = csvData.split('\n').map(row => row.split(','));
       const table = document.createElement('table');
 
-      // Check if there is at least one row (the header)
-      if (rows.length > 0) {
-        // Create the header row
-        const headerRow = document.createElement('tr');
-        const headers = rows[0].split(',');
-        headers.forEach(headerText => {
-          const th = document.createElement('th');
-          th.textContent = headerText.trim();
-          headerRow.appendChild(th);
-        });
-        table.appendChild(headerRow);
-      }
+      // Create table header from first row
+      const headerRow = document.createElement('tr');
+      rows[0].forEach(headerText => {
+        const th = document.createElement('th');
+        th.textContent = headerText.trim();
+        headerRow.appendChild(th);
+      });
+      table.appendChild(headerRow);
 
-      // Loop through the remaining rows and add them to the table
+      // Create table rows
       for (let i = 1; i < rows.length; i++) {
         // Skip empty rows
-        if (!rows[i].trim()) continue;
-        const row = document.createElement('tr');
-        const cells = rows[i].split(',');
-        cells.forEach(cellText => {
+        if (!rows[i] || rows[i].length === 0) continue;
+
+        const dataRow = document.createElement('tr');
+        rows[i].forEach(cell => {
           const td = document.createElement('td');
-          td.textContent = cellText.trim();
-          row.appendChild(td);
+          td.textContent = cell.trim();
+          dataRow.appendChild(td);
         });
-        table.appendChild(row);
+        table.appendChild(dataRow);
       }
 
-      // Append the table to the container in the HTML
       document.getElementById('carpark-container').appendChild(table);
     })
-    .catch(error => {
-      console.error('Error fetching CSV data:', error);
+    .catch(err => {
+      console.error('Error loading CSV:', err);
       const errorMsg = document.createElement('p');
-      errorMsg.textContent = 'There was an error loading the car park data.';
+      errorMsg.textContent = 'Error loading car park data.';
       document.getElementById('carpark-container').appendChild(errorMsg);
     });
 });
