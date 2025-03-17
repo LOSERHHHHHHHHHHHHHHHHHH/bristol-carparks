@@ -9,6 +9,14 @@
   <!-- Add the manifest for PWA -->
   <link rel="manifest" href="manifest.json" />
 </head>
+  <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js')
+      .then(() => console.log('Service Worker registered'))
+      .catch(err => console.error('Service Worker registration failed:', err));
+  }
+</script>
+
 <body>
   <header>
     <h1>Bristol Car Parks</h1>
