@@ -1,4 +1,4 @@
-X,Y,OBJECTID,NAME,NUMBER_LEVELS,AREA_NUMBER,AREA_NAME,OPERATOR
+Easting,Northing,CarParkID,Name,Type,Spaces,Area,Payment
 358562.079,172212.642000001,57,Wapping Wharf,Surface,6,Docks Estate Area,Euro Car Parks,Euro Car Parks,600,0700-1900 Mon-Fri,B,Pay and Display,No,358606.168,172158.387,,0,, ,,
 357935.704,172295.446,58,Maritime Heritage Centre,Surface,6,Docks Estate Area,BCC,Bristol City Council,173,24hrs 7 day a week,B,Pay and Display,No,357935.704,172295.446,,0,, ,,
 358700.497,172569.706,59,Queen Square,Surface,3,Central Area,BCC,Bristol City Council,161,24hrs 7 day a week,B,Pay and Display,No,358785.853,172626.66,,0,, ,,
